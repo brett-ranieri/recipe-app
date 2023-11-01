@@ -9,7 +9,7 @@ class Recipe(models.Model):
         max_length=400, help_text="Ingredients must be seperated by commas"
     )
     difficulty = models.CharField(max_length=20)
-    description = models.TextField()
+    description = models.TextField(max_length=600, help_text="600 character limit")
 
     # define string representation od the class
     def __str__(self):
