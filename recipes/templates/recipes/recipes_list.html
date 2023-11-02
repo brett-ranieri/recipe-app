@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+	<title>Recipe App</title>
+	<style>
+		body {
+			background: url("{% static 'recipes/images/stove_top.jpg' %}") no-repeat fixed;
+			background-size: cover;
+			position: relative;
+		}
+	</style>
+</html>
+
+<h1>Recipes</h1>
+
+<table
+	border="1"
+	cellpadding="5"
+	cellspacing="5"
+>
+	{% for object in object_list %}
+	<tr>
+		<td>
+			<!-- <a href="{{object.get_absolute_url}}"> -->
+			{{object.name}}
+			<!-- </a> -->
+		</td>
+		<td>
+			<img
+				src="{{object.pic.url}}"
+				height="150"
+			/>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
