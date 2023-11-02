@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+	<title>Recipe App</title>
+	<style>
+		body {
+			background: url("{% static 'recipes/images/cutting_board.jpg' %}") no-repeat fixed;
+			background-size: cover;
+			position: relative;
+		}
+	</style>
+	<body>
+		<h2>Details: {{object.name}}</h2>
+
+		<b>Cooking Time: </b> {{object.cooking_time}} <br />
+
+		<b>Ingredients: </b> {{object.ingredients}} <br />
+
+		<b>Difficulty: </b> {{object.difficulty}} <br />
+
+		<b>Price: </b> {{object.description}} <br />
+
+		<img
+			src="{{object.pic.url}}"
+			height="300"
+		/>
+	</body>
+</html>

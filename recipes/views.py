@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # used to display lists
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Recipe
 
 
@@ -16,3 +16,11 @@ class RecipeListView(ListView):
     model = Recipe
     # specify template
     template_name = "recipes/recipes_list.html"
+
+
+# class that inherits DetailView props
+class RecipeDetailView(DetailView):
+    # specify model
+    model = Recipe
+    # specify template
+    template_name = "recipes/recipes_detail.html"

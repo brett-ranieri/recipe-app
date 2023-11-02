@@ -1,5 +1,8 @@
 from django.db import models
 
+# import reverse function
+from django.shortcuts import reverse
+
 
 class Recipe(models.Model):
     # define attributes of the class
@@ -15,3 +18,8 @@ class Recipe(models.Model):
     # define string representation od the class
     def __str__(self):
         return str(self.name)
+
+    # function will return the primary key of the recipe
+    def get_absolute_url(self):
+        # reverse returns an absolute path reference matching a given view and optional parameters
+        return reverse("recipes:detail", kwargs={"pk": self.pk})
