@@ -10,6 +10,7 @@ class Recipe(models.Model):
     )
     difficulty = models.CharField(max_length=20)
     description = models.TextField(max_length=600, help_text="600 character limit")
+    pic = models.ImageField(upload_to="recipes", default="empty_bowl.jpg")
 
     # define string representation od the class
     def __str__(self):

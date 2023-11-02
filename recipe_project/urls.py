@@ -17,7 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# import settings and static
+from django.conf import settings
+from django.conf.urls.static import static
+
 # import include function
 from django.urls import include
 
-urlpatterns = [path("admin/", admin.site.urls), path("", include("recipes.urls"))]
+urlpatterns = [
+    path("admin/", admin.site.urls),
+    path("", include("recipes.urls")),
+    path("recipes/", include("recipes.urls")),
+]
+# extend urlpatterns parameter to include media info
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
