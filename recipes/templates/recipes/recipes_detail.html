@@ -5,25 +5,51 @@
 	<title>Recipe App</title>
 	<style>
 		body {
-			background: url("{% static 'recipes/images/cutting_board.jpg' %}") no-repeat fixed;
+			background: url("{% static 'recipes/images/counter.jpg' %}") no-repeat fixed;
 			background-size: cover;
 			position: relative;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			font-family: "Roboto Mono", sans-serif;
+		}
+		img {
+			border-radius: 10% / 50%;
+			width: 70%;
+		}
+		p {
+			margin: 8px;
+		}
+		.detail_container {
+			border-radius: 10% / 50%;
+			background: rgba(255, 69, 0, 0.7);
+			align-items: center;
+			width: 90%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			max-width: 900px;
 		}
 	</style>
 	<body>
-		<h2>Details: {{object.name}}</h2>
+		<div class="detail_container">
+			<h1>{{object.name}}</h1>
 
-		<b>Cooking Time: </b> {{object.cooking_time}} <br />
+			<img
+				src="{{object.pic.url}}"
+				height="300"
+			/>
 
-		<b>Ingredients: </b> {{object.ingredients}} <br />
+			<p style="margin-top: 16px"><b>Cooking Time: </b> {{object.cooking_time}} minutes</p>
 
-		<b>Difficulty: </b> {{object.difficulty}} <br />
+			<p><b>Ingredients: </b> {{object.ingredients}}</p>
 
-		<b>Price: </b> {{object.description}} <br />
+			<p><b>Difficulty: </b> {{object.difficulty}}</p>
 
-		<img
-			src="{{object.pic.url}}"
-			height="300"
-		/>
+			<b style="margin: 8px">Description: </b>
+			<p style="margin-bottom: 16px">{{object.description}}</p>
+		</div>
 	</body>
 </html>

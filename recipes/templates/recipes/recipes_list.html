@@ -8,26 +8,81 @@
 			background: url("{% static 'recipes/images/stove_top.jpg' %}") no-repeat fixed;
 			background-size: cover;
 			position: relative;
+			font-family: "Roboto Mono", sans-serif;
+		}
+		table {
+			border: none;
+			display: flex;
+			padding-top: 2em;
+			padding-left: 14em;
+			border-spacing: 2em;
+			width: 100%;
+		}
+		.header {
+			color: aliceblue;
+			padding-left: 1em;
+			font-size: 4em;
+		}
+		.recipe_container {
+			border-radius: 10% / 50%;
+			background: rgba(255, 69, 0, 0.7);
+			color: aliceblue;
+			align-items: center;
+			width: 100%;
+			padding-top: 2em;
+			padding-bottom: 2em;
+		}
+		.recipe_container a {
+			color: aliceblue;
+		}
+		.recipe_container:hover {
+			opacity: 1;
+			background-color: aqua;
+			color: black;
+		}
+		.recipe_container:hover a {
+			color: black;
+		}
+		.recipe_name {
+			text-align: center;
+		}
+		.recipe_pic {
+			align-self: center;
+			border-radius: 10% / 50%;
+			height: 18em;
+		}
+		td.name {
+			width: 35%;
+		}
+		td.pic {
+			width: 65%;
 		}
 	</style>
 </html>
 
-<h1>Recipes</h1>
+<h1 class="header">Recipes</h1>
 
-<table
-	border="1"
-	cellpadding="5"
-	cellspacing="5"
->
+<table>
 	{% for object in object_list %}
 	<tr>
-		<td>
-			<a href="{{object.get_absolute_url}}"> {{object.name}} </a>
+		<td class="name">
+			<div class="recipe_container">
+				<div class="recipe_name">
+					<a
+						href="{{object.get_absolute_url}}"
+						style="font-size: 2em"
+					>
+						{{object.name}}
+					</a>
+					<br />
+					<p style="font-size: 1em">Difficulty: {{object.difficulty}}</p>
+				</div>
+			</div>
 		</td>
-		<td>
+		<td class="pic">
 			<img
+				class="recipe_pic"
 				src="{{object.pic.url}}"
-				height="150"
 			/>
 		</td>
 	</tr>
