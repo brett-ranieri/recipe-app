@@ -23,3 +23,18 @@ class Recipe(models.Model):
     def get_absolute_url(self):
         # reverse returns an absolute path reference matching a given view and optional parameters
         return reverse("recipes:detail", kwargs={"pk": self.pk})
+
+    # function to calculate difficulty
+    def calculate_difficulty(self):
+        ingredients = self.ingredients.split(", ")
+        if self.cooking_time < 10 and len(ingredients) < 4:
+            difficulty = "Easy"
+        elif self.cooking_time < 10 and len(ingredients) >= 4:
+            difficulty = "Medium"
+        elif self.cooking_time >= 10 and len(ingredients) < 4:
+            difficulty = "Intermediate"
+        elif self.cooking_time >= 10 and len(ingredients) >= 4:
+            difficulty = "Hard"
+
+        print("model: ", difficulty)
+        return difficulty

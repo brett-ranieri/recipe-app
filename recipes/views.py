@@ -44,11 +44,11 @@ def records(request):
         recipe_diff = request.POST.get("recipe_diff")
         chart_type = request.POST.get("chart_type")
 
-        print(recipe_diff)
-        print(chart_type)
-
         qs = Recipe.objects.all()
-        print(qs)
+
+        for obj in qs:
+            diff = obj.calculate_difficulty()
+            print(diff)
 
     context = {
         "form": form,
