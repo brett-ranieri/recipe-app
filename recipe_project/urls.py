@@ -24,10 +24,15 @@ from django.conf.urls.static import static
 # import include function
 from django.urls import include
 
+# import login view
+from .views import login_view
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("recipes.urls")),
     path("recipes/", include("recipes.urls")),
+    # add login path
+    path("login/", login_view, name="login"),
 ]
 # extend urlpatterns parameter to include media info
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
