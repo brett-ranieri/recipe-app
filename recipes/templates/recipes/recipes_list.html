@@ -18,6 +18,17 @@
 			border-spacing: 2em;
 			width: 100%;
 		}
+		a.button {
+			-webkit-appearance: button;
+			-moz-appearance: button;
+			appearance: button;
+
+			text-decoration: none;
+			color: initial;
+		}
+		span.link {
+			font-size: 2em;
+		}
 		.header {
 			color: aliceblue;
 			padding-left: 1em;
@@ -28,9 +39,10 @@
 			background: rgba(255, 69, 0, 0.7);
 			color: aliceblue;
 			align-items: center;
-			width: 100%;
-			padding-top: 2em;
-			padding-bottom: 2em;
+			max-width: 80%;
+			padding: 1.5em 2em;
+			text-align: center;
+			display: inline-block;
 		}
 		.recipe_container a,
 		.logout_button a {
@@ -47,13 +59,11 @@
 		.logout_button:hover a {
 			color: black;
 		}
-		.recipe_name {
-			text-align: center;
-		}
 		.recipe_pic {
 			align-self: center;
 			border-radius: 10% / 50%;
 			height: 18em;
+			margin-left: 4em;
 		}
 		.logout_button {
 			position: absolute;
@@ -71,6 +81,7 @@
 		}
 		td.name {
 			width: 35%;
+			text-align: center;
 		}
 		td.pic {
 			width: 65%;
@@ -79,8 +90,9 @@
 </html>
 
 <h1 class="header">Recipes</h1>
-<div class="logout_button">
+<div>
 	<a
+		class="button logout_button"
 		href="{% url 'success' %}"
 		style="font-size: 1em"
 		>Logout</a
@@ -91,18 +103,17 @@
 	{% for object in object_list %}
 	<tr>
 		<td class="name">
-			<div class="recipe_container">
-				<div class="recipe_name">
-					<a
-						href="{{object.get_absolute_url}}"
-						style="font-size: 2em"
-					>
-						{{object.name}}
-					</a>
+			<a
+				class="button"
+				href="{{object.get_absolute_url}}"
+			>
+				<div class="recipe_container">
+					<span class="link">{{object.name}}</span>
 					<br />
-					<p style="font-size: 1em">Difficulty: {{object.difficulty}}</p>
+					<br />
+					Difficulty: {{object.difficulty}}
 				</div>
-			</div>
+			</a>
 		</td>
 		<td class="pic">
 			<img

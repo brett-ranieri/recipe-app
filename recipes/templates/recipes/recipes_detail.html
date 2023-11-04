@@ -22,6 +22,14 @@
 		p {
 			margin: 8px;
 		}
+		a.button {
+			-webkit-appearance: button;
+			-moz-appearance: button;
+			appearance: button;
+
+			text-decoration: none;
+			color: initial;
+		}
 		.detail_container {
 			border-radius: 10% / 50%;
 			background: rgba(255, 69, 0, 0.7);
@@ -60,13 +68,12 @@
 		}
 	</style>
 	<body>
-		<div class="logout_button">
-			<a
-				href="{% url 'success' %}"
-				style="font-size: 1em"
-				>Logout</a
-			>
-		</div>
+		<a
+			class="button logout_button"
+			href="{% url 'success' %}"
+			style="font-size: 1em"
+			>Logout</a
+		>
 		<div class="detail_container">
 			<h1>{{object.name}}</h1>
 
