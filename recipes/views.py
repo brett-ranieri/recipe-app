@@ -43,13 +43,15 @@ def records(request):
     if request.method == "POST":
         recipe_diff = request.POST.get("recipe_diff")
         chart_type = request.POST.get("chart_type")
-
+        print("searched: ", recipe_diff)
         qs = Recipe.objects.all()
-
+        matching_ids = []
         for obj in qs:
             diff = obj.calculate_difficulty()
             print(diff)
-
+            if diff == recipe_diff:
+                matching_ids.append(obj.id)
+        print(matching_ids)
     context = {
         "form": form,
     }

@@ -9,10 +9,10 @@ CHART__CHOICES = (  # specify choices as a tuple
 )
 
 DIFFICULTY__CHOICES = (
-    ("#1", "Easy"),
-    ("#2", "Medium"),
-    ("#3", "Intermediate"),
-    ("#1", "Hard"),
+    ("Easy", "Easy"),
+    ("Medium", "Medium"),
+    ("Intermediate", "Intermediate"),
+    ("Hard", "Hard"),
 )
 
 
