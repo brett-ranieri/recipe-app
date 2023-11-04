@@ -25,7 +25,7 @@ from django.conf.urls.static import static
 from django.urls import include
 
 # import login view
-from .views import login_view
+from .views import login_view, logout_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -33,6 +33,7 @@ urlpatterns = [
     path("recipes/", include("recipes.urls")),
     # add login path
     path("login/", login_view, name="login"),
+    path("logout/", logout_view, name="success"),
 ]
 # extend urlpatterns parameter to include media info
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
