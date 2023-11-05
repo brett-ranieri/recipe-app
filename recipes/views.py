@@ -68,7 +68,7 @@ def records(request):
             recipe_df = pd.DataFrame(qs.values("name", "cooking_time"))
             print(recipe_df)
             chart = get_chart(chart_type, recipe_df, labels=recipe_df["name"].values)
-            # add hyoerlink to cell containing name value for each row
+            # add hyperlink to cell containing name value for each row
             recipe_df = pd.DataFrame(
                 qs.values("id", "name", "cooking_time"),
                 columns=["id", "name", "cooking_time"],
