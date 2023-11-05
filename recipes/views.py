@@ -68,8 +68,24 @@ def records(request):
             recipe_df = pd.DataFrame(qs.values("name", "cooking_time"))
             print(recipe_df)
             chart = get_chart(chart_type, recipe_df, labels=recipe_df["name"].values)
+            # add hyoerlink to cell containing name value for each row
+            recipe_df = pd.DataFrame(
+                qs.values("id", "name", "cooking_time"),
+                columns=["id", "name", "cooking_time"],
+            )
+            links = []
+            for e, nam in enumerate(recipe_df["name"]):
+                nam = (
+                    '<a href="/list/'
+                    + str(recipe_df["id"][e])
+                    + '">'
+                    + str(nam)
+                    + "</a>"
+                )
+                links.append(nam)
+            recipe_df["name"] = links
             # convert data type to html
-            recipe_df = recipe_df.to_html()
+            recipe_df = recipe_df.to_html(index=False, escape=False)
     context = {
         "form": form,
         "recipe_df": recipe_df,
