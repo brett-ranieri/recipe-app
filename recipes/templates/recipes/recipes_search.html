@@ -10,14 +10,14 @@
 			position: relative;
 			font-family: "Roboto Mono", sans-serif;
 		}
-		table {
+		/* table {
 			border: none;
 			display: flex;
 			padding-top: 2em;
 			padding-left: 14em;
 			border-spacing: 2em;
 			width: 100%;
-		}
+		} */
 		a.button {
 			-webkit-appearance: button;
 			-moz-appearance: button;
@@ -43,6 +43,24 @@
 			padding: 1.5em 2em;
 			text-align: center;
 			display: inline-block;
+		}
+		.search_results {
+			width: 65%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			margin-top: 15vh;
+			padding: 3px;
+			/* background-color: #ffffff; */
+			/* border-radius: 10px; */
+			color: black;
+			padding: 25px;
+			/* box-shadow: 1px 1px 1px #5c5c5c; */
+			margin: 0 auto;
+			/* font-family: "Roboto Mono", "Calibri", "Trebuchet MS", sans-serif; */
+			font-size: 16px;
+			text-align: center;
+			justify-content: center;
 		}
 		.logout_button a {
 			color: aliceblue;
@@ -120,4 +138,18 @@
 		{% csrf_token %} {{form}}
 		<button type="submit">Search</button>
 	</form>
+</div>
+<br />
+
+<hr />
+
+<br />
+<div class="search_container">
+	{% if recipe_df %}
+	<div class="search_results">{{recipe_df|safe}}</div>
+	<br />
+	<img src="data:image/png;base64, {{chart|safe}}" />
+	{% else %}
+	<h3 class="h1_search_results">Nothing to show yet...</h3>
+	{% endif %}
 </div>

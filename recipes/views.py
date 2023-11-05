@@ -10,6 +10,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 # import search form
 from .forms import DifficultySearchForm
 
+# import pandas for efficient data analysis
+# convention to import as and refer to as "pd"
+import pandas as pd
+
+# import get_chart
+from .utils import get_chart
+
 
 # define function that will return view using built in render function
 def home(request):
@@ -52,8 +59,22 @@ def records(request):
             if diff == recipe_diff:
                 matching_ids.append(obj.id)
         print(matching_ids)
+
+        qs = qs.filter(id__in=matching_ids)
+
+        # if data found
+        if qs:
+            # convert the queryset values to pandas dataframe
+            recipe_df = pd.DataFrame(qs.values("name", "cooking_time"))
+            print(recipe_df)
+            chart = get_chart(chart_type, recipe_df, labels=recipe_df["name"].values)
+            # convert data type to html
+            recipe_df = recipe_df.to_html()
     context = {
         "form": form,
+        "recipe_df": recipe_df,
+        "chart": chart,
+        "qs": qs,
     }
 
     return render(request, "recipes/recipes_search.html", context)
