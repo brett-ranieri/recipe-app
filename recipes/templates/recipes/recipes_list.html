@@ -7,7 +7,6 @@
 		body {
 			background: url("{% static 'recipes/images/stove_top.jpg' %}") no-repeat fixed;
 			background-size: cover;
-			position: relative;
 			font-family: "Roboto Mono", sans-serif;
 		}
 		table {
@@ -29,11 +28,7 @@
 		span.link {
 			font-size: 2em;
 		}
-		.header {
-			color: aliceblue;
-			padding-left: 1em;
-			font-size: 4em;
-		}
+
 		.recipe_container {
 			border-radius: 10% / 50%;
 			background: rgba(255, 69, 0, 0.7);
@@ -44,19 +39,16 @@
 			text-align: center;
 			display: inline-block;
 		}
-		.recipe_container a,
-		.logout_button a {
+		.recipe_container a {
 			color: aliceblue;
 			text-decoration: none;
 		}
-		.recipe_container:hover,
-		.logout_button:hover {
+		.recipe_container:hover {
 			opacity: 1;
 			background-color: aqua;
 			color: black;
 		}
-		.recipe_container:hover a,
-		.logout_button:hover a {
+		.recipe_container:hover a {
 			color: black;
 		}
 		.recipe_pic {
@@ -65,7 +57,7 @@
 			height: 18em;
 			margin-left: 4em;
 		}
-		.logout_button {
+		/* .logout_button {
 			position: absolute;
 			right: 50px;
 			top: 10px;
@@ -78,7 +70,7 @@
 			border-radius: 5px;
 			background: rgba(255, 69, 0, 0.7);
 			color: aliceblue;
-		}
+		} */
 		td.name {
 			width: 35%;
 			text-align: center;
@@ -86,18 +78,68 @@
 		td.pic {
 			width: 65%;
 		}
+		h1 {
+			background: rgba(0, 0, 0, 0.7);
+		}
+		.header {
+			color: aliceblue;
+			margin-top: 1.5em;
+			padding-left: 1em;
+			font-size: 4em;
+		}
+		.nav_button:hover {
+			opacity: 1;
+			background-color: aqua;
+			color: black;
+		}
+		.nav_button {
+			position: relative;
+			height: 2.5em;
+			width: 100px;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 5px;
+			background: rgba(255, 69, 0, 0.7);
+			color: aliceblue;
+			margin-right: 2em;
+		}
+		.nav_bar {
+			position: absolute;
+			top: 0px;
+			height: 4em;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			background-color: darkgray;
+		}
 	</style>
 </html>
 
-<h1 class="header">Recipes</h1>
-<div>
+<nav class="nav_bar">
 	<a
-		class="button logout_button"
+		class="button nav_button"
+		href="{% url 'recipes:list' %}"
+		style="font-size: 1em"
+		>Recipe List</a
+	>
+	<a
+		class="button nav_button"
+		href="{% url 'recipes:search' %}"
+		style="font-size: 1em"
+		>Search</a
+	>
+	<a
+		class="button nav_button"
 		href="{% url 'success' %}"
 		style="font-size: 1em"
 		>Logout</a
 	>
-</div>
+</nav>
+
+<h1 class="header">Recipes</h1>
 
 <table>
 	{% for object in object_list %}

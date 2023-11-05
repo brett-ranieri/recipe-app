@@ -7,7 +7,6 @@
 		body {
 			background: url("{% static 'recipes/images/stove_top.jpg' %}") no-repeat fixed;
 			background-size: cover;
-			position: relative;
 			font-family: "Roboto Mono", sans-serif;
 		}
 		/* table {
@@ -29,12 +28,30 @@
 		/* span.link {
 			font-size: 2em;
 		} */
+		h1 {
+			background: rgba(0, 0, 0, 0.7);
+		}
 		.header {
 			color: aliceblue;
+			margin-top: 1.5em;
 			padding-left: 1em;
 			font-size: 4em;
 		}
 		.search_container {
+			background: rgba(255, 69, 0, 0.7);
+			color: aliceblue;
+			height: 3em;
+			margin-top: 1.5em;
+			padding-left: 3em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.flex_container {
+			display: flex;
+			justify-content: center;
+		}
+		.result_container {
 			border-radius: 10% / 50%;
 			background: rgba(255, 69, 0, 0.7);
 			color: aliceblue;
@@ -62,18 +79,19 @@
 			text-align: center;
 			justify-content: center;
 		}
-		.logout_button a {
+		.chart {
+			width: 80%;
+		}
+		/* .logout_button a {
 			color: aliceblue;
 			text-decoration: none;
-		}
-		.recipe_container:hover,
-		.logout_button:hover {
+		} */
+		.nav_button:hover {
 			opacity: 1;
 			background-color: aqua;
 			color: black;
 		}
-		.recipe_container:hover a,
-		.logout_button:hover a {
+		.recipe_container:hover a {
 			color: black;
 		}
 		.recipe_pic {
@@ -82,18 +100,19 @@
 			height: 18em;
 			margin-left: 4em;
 		}
-		.logout_button {
+		/* .logout_button {
 			position: absolute;
 			right: 50px;
-			top: 10px;
+			top: 0px;
 		}
 		.search_button {
 			position: absolute;
 			right: 200px;
-			top: 10px;
-		}
+			top: 0px;
+		} */
 		.nav_button {
-			height: 3em;
+			position: relative;
+			height: 2.5em;
 			width: 100px;
 			text-align: center;
 			display: flex;
@@ -102,6 +121,31 @@
 			border-radius: 5px;
 			background: rgba(255, 69, 0, 0.7);
 			color: aliceblue;
+			margin-right: 2em;
+		}
+		.nav_bar {
+			position: absolute;
+			top: 0px;
+			height: 4em;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			background-color: darkgray;
+		}
+		td {
+			padding: 1em;
+			background-color: darkgray;
+		}
+
+		th {
+			padding: 1em;
+			background-color: rgb(128, 128, 128);
+			color: aliceblue;
+			font-weight: 700;
+		}
+		table {
+			border: black;
 		}
 		/* td.name {
 			width: 35%;
@@ -113,23 +157,29 @@
 	</style>
 </html>
 
-<h1 class="header">Search for Recipes:</h1>
-<div>
+<nav class="nav_bar">
 	<a
-		class="button search_button nav_button"
-		href="{% url 'success' %}"
+		class="button nav_button"
+		href="{% url 'recipes:list' %}"
+		style="font-size: 1em"
+		>Recipe List</a
+	>
+	<a
+		class="button nav_button"
+		href="{% url 'recipes:search' %}"
 		style="font-size: 1em"
 		>Search</a
 	>
-</div>
-<div>
 	<a
-		class="button logout_button nav_button"
+		class="button nav_button"
 		href="{% url 'success' %}"
 		style="font-size: 1em"
 		>Logout</a
 	>
-</div>
+</nav>
+
+<h1 class="header">Search for Recipes:</h1>
+
 <div class="search_container">
 	<form
 		action=""
@@ -144,12 +194,17 @@
 <hr />
 
 <br />
-<div class="search_container">
-	{% if recipe_df %}
-	<div class="search_results">{{recipe_df|safe}}</div>
-	<br />
-	<img src="data:image/png;base64, {{chart|safe}}" />
-	{% else %}
-	<h3 class="h1_search_results">Nothing to show yet...</h3>
-	{% endif %}
+<div class="flex_container">
+	<div class="result_container">
+		{% if recipe_df %}
+		<div class="search_results">{{recipe_df|safe}}</div>
+		<br />
+		<img
+			class="chart"
+			src="data:image/png;base64, {{chart|safe}}"
+		/>
+		{% else %}
+		<h3 class="h1_search_results">Nothing to show yet...</h3>
+		{% endif %}
+	</div>
 </div>
