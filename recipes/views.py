@@ -39,6 +39,10 @@ class RecipeDetailView(LoginRequiredMixin, DetailView):
     template_name = "recipes/recipes_detail.html"
 
 
+def about_view(request):
+    return render(request, "recipes/about.html")
+
+
 def records(request):
     # create instance of DifficultySearchForm
     form = DifficultySearchForm(request.POST or None)

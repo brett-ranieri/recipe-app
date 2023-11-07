@@ -85,9 +85,21 @@
 		<nav class="nav_bar">
 			<a
 				class="button nav_button"
+				href="{% url 'recipes:about' %}"
+				style="font-size: 1em"
+				>About</a
+			>
+			<a
+				class="button nav_button"
 				href="{% url 'recipes:list' %}"
 				style="font-size: 1em"
 				>Recipe List</a
+			>
+			<a
+				class="button nav_button"
+				href="{% url 'recipes:create' %}"
+				style="font-size: 1em"
+				>Create</a
 			>
 			<a
 				class="button nav_button"

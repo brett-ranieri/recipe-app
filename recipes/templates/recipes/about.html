@@ -63,8 +63,16 @@
 			margin: 1.5em;
 			padding: 2em;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
 			justify-content: center;
+		}
+		.link {
+			color: rgba(255, 69, 0);
+			background-color: aliceblue;
+			width: 100%;
+			text-align: center;
+			padding: 1em;
 		}
 	</style>
 </html>
@@ -102,21 +110,21 @@
 			>Logout</a
 		>
 	</nav>
-	<h1 class="header">Create a Recipe:</h1>
+	<h1 class="header">About this app:</h1>
 
 	<div class="create_container">
-		<form
-			action=""
-			method="POST"
-			enctype="multipart/form-data"
-		>
-			{% csrf_token %} {{create_form.as_p}}
-			<button
-				type="submit"
-				class="button"
+		<p>
+			This app was a bootcamp project built with Django and Python. It's goal is to allow the user
+			to create, and view recipes. Search for recipes by difficulty, and view the details of a
+			specific recipe. It is hosted on Heroku.
+		</p>
+		<p class="link">
+			To check out more of my work, head over to my
+			<a
+				href="https://brett-ranieri.github.io/web-port-react/"
+				target="_blank"
+				>Portfolio Page</a
 			>
-				Get cooking
-			</button>
-		</form>
+		</p>
 	</div>
 </body>
