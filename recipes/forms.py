@@ -20,3 +20,13 @@ DIFFICULTY__CHOICES = (
 class DifficultySearchForm(forms.Form):
     recipe_diff = forms.ChoiceField(choices=DIFFICULTY__CHOICES)
     chart_type = forms.ChoiceField(choices=CHART__CHOICES)
+
+
+class CreateRecipeForm(forms.Form):
+    name = forms.CharField(max_length=50, required=False)
+    cooking_time = forms.IntegerField(help_text="in minutes", required=False)
+    ingredients = forms.CharField(
+        max_length=300, help_text="seperated by commas", required=False
+    )
+    description = forms.CharField(max_length=300, required=False)
+    # pic = forms.ImageField(required=False)

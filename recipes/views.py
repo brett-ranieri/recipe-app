@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # used to display lists
 from django.views.generic import ListView, DetailView
@@ -8,7 +8,7 @@ from .models import Recipe
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # import search form
-from .forms import DifficultySearchForm
+from .forms import DifficultySearchForm, CreateRecipeForm
 
 # import pandas for efficient data analysis
 # convention to import as and refer to as "pd"
@@ -94,3 +94,33 @@ def records(request):
     }
 
     return render(request, "recipes/recipes_search.html", context)
+
+
+def create_view(request):
+    create_form = CreateRecipeForm(request.POST or None, request.FILES)
+    name = None
+    cooking_time = None
+    ingredients = None
+
+    if request.method == "POST":
+        try:
+            recipe = Recipe.objects.create(
+                name=request.POST.get("name"),
+                cooking_time=request.POST.get("cooking_time"),
+                ingredients=request.POST.get("ingredients"),
+                description=request.POST.get("description"),
+            )
+            recipe.save()
+            return redirect("recipes:create")
+
+        except:
+            print("Oops...something went wrong")
+
+    context = {
+        "create_form": create_form,
+        "name": name,
+        "cooking_time": cooking_time,
+        "ingredients": ingredients,
+    }
+
+    return render(request, "recipes/recipes_create.html", context)
