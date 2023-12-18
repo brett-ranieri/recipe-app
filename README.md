@@ -11,7 +11,7 @@ Web-application built with Python using the Django framework.
 - To create a virtual environment you will need to install virtualenvwrapper `pip install virtualenvwrapper`
 - Once installed run `mkvirtualenv test-environment`
 - Then run `workon test-environment` to load the installed environment
-- Finally, run `pip install django` or `py -m pip install Django` to install Django in the environment
+- Finally, run `pip install django` (mac) or `py -m pip install Django` (win) to install Django in the environment
 
 ### Once in you virtual environment:
 
