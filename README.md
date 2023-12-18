@@ -2,7 +2,7 @@
 
 Web-application built with Python using the Django framework. 
 
-## How to get the project running
+## How to get the project running:
 
 *Note: You will need to work in a virtual environment with Django installed*
 
@@ -24,7 +24,7 @@ Web-application built with Python using the Django framework.
 - Username: DemoUser
 - Password: DemoPassword
 
-## Features
+## Features:
 
 - Admin panel capable of preforming CRUD operations on database (can be accessed by going to `/admin` URL and logging in with same credentials as above)
 
