@@ -111,6 +111,7 @@
 			enctype="multipart/form-data"
 		>
 			{% csrf_token %} {{create_form.as_p}}
+			<p>*Difficulty will be automatically calculated upon submission.</p>
 			<button
 				type="submit"
 				class="button"

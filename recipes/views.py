@@ -105,16 +105,42 @@ def create_view(request):
     name = None
     cooking_time = None
     ingredients = None
+    difficulty = None
 
     if request.method == "POST":
         try:
+            ingred = request.POST.get("ingredients")
+            cook_t = int(request.POST.get("cooking_time"))
+            print(ingred)
+            print(cook_t)
+
+            # need to circle back to this...
+            # couldnt access calculate_difficulty from the model because recipe
+            # didnt exist yet...this is duplicated code though so there must be
+            # a better way to accomplish this.
+            def calculate_difficulty(ingredients, cooking_time):
+                ingreds = ingredients.split(", ")
+                if cooking_time < 10 and len(ingreds) < 4:
+                    difficulty = "Easy"
+                elif cooking_time < 10 and len(ingreds) >= 4:
+                    difficulty = "Medium"
+                elif cooking_time >= 10 and len(ingreds) < 4:
+                    difficulty = "Intermediate"
+                elif cooking_time >= 10 and len(ingreds) >= 4:
+                    difficulty = "Hard"
+                return difficulty
+
+            diff = calculate_difficulty(ingred, cook_t)
+            print(diff)
             recipe = Recipe.objects.create(
                 name=request.POST.get("name"),
                 cooking_time=request.POST.get("cooking_time"),
                 ingredients=request.POST.get("ingredients"),
                 description=request.POST.get("description"),
+                difficulty=diff,
             )
             recipe.save()
+            # re-direct clears form on successful submission
             return redirect("recipes:create")
 
         except:
@@ -125,6 +151,7 @@ def create_view(request):
         "name": name,
         "cooking_time": cooking_time,
         "ingredients": ingredients,
+        "difficulty": difficulty,
     }
 
     return render(request, "recipes/recipes_create.html", context)
